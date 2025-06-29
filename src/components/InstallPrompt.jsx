@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Download } from "lucide-react";
+import logo from "../assets/human.jpeg"
 
 export default function InstallPrompt() {
   const [deferredPrompt, setDeferredPrompt] = useState(null);
@@ -30,7 +31,7 @@ export default function InstallPrompt() {
     visible && (
       <div className="fixed bottom-4 right-4 bg-background border border-gray-300 dark:border-gray-700 shadow-xl rounded-xl p-4 z-50 flex items-center gap-4 animate-slide-up">
         <img
-          src="./../public/OIP.jpeg"
+          src={logo}
           alt="App Icon"
           className="w-10 h-10 rounded-lg"
         />
