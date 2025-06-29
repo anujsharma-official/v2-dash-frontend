@@ -1,9 +1,6 @@
 import { useEffect, useState } from "react";
 import { Download, X } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import logo from "../assets/human.jpg"; // Use your local image
+import logo from "../assets/human.jpg";
 
 export default function InstallPrompt() {
   const [deferredPrompt, setDeferredPrompt] = useState(null);
@@ -34,38 +31,31 @@ export default function InstallPrompt() {
 
   return (
     visible && (
-      <div className="fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[90%] max-w-xl animate-slide-down">
-        <Card className="rounded-2xl shadow-xl border border-border bg-background">
-          <CardContent className="p-4 flex items-center gap-4">
-            <Avatar className="w-12 h-12">
-              <AvatarImage src={logo} alt="App Logo" />
-              <AvatarFallback>AP</AvatarFallback>
-            </Avatar>
+      <div className="fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[90%] max-w-xl bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-700 rounded-xl shadow-lg flex items-center gap-4 p-4 animate-slide-down">
+        <img src={logo} alt="App Icon" className="w-12 h-12 rounded-lg" />
 
-            <div className="flex-1">
-              <p className="text-base font-semibold">Install Admin App</p>
-              <p className="text-sm text-muted-foreground">
-                For faster access & offline use
-              </p>
-            </div>
+        <div className="flex-1">
+          <p className="text-base font-semibold text-gray-900 dark:text-white">Install Admin App</p>
+          <p className="text-sm text-gray-500 dark:text-gray-400">
+            For faster access & offline use
+          </p>
+        </div>
 
-            <Button onClick={handleInstall} className="gap-1">
-              <Download className="w-4 h-4" />
-              Install
-            </Button>
+        <button
+          onClick={handleInstall}
+          className="flex items-center gap-1 bg-indigo-600 hover:bg-indigo-700 text-white px-3 py-1.5 rounded-md text-sm"
+        >
+          <Download className="w-4 h-4" />
+          Install
+        </button>
 
-            <Button
-              variant="ghost"
-              size="icon"
-              className="ml-2"
-              onClick={handleClose}
-            >
-              <X className="w-4 h-4" />
-            </Button>
-          </CardContent>
-        </Card>
+        <button
+          onClick={handleClose}
+          className="text-gray-500 hover:text-gray-800 dark:text-gray-400 dark:hover:text-white ml-2"
+        >
+          <X className="w-4 h-4" />
+        </button>
 
-        {/* Inline animation class using Tailwind's arbitrary keyframes */}
         <style>{`
           @keyframes slide-down {
             0% {
