@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
 import { Download } from "lucide-react";
-import logo from "../assets/human.jpeg"
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import logo from "../assets/human.jpg";
 
 export default function InstallPrompt() {
   const [deferredPrompt, setDeferredPrompt] = useState(null);
@@ -10,7 +13,7 @@ export default function InstallPrompt() {
     const handler = (e) => {
       e.preventDefault();
       setDeferredPrompt(e);
-      setVisible(true); // Always show prompt when user visits
+      setVisible(true);
     };
     window.addEventListener("beforeinstallprompt", handler);
     return () => window.removeEventListener("beforeinstallprompt", handler);
@@ -29,23 +32,25 @@ export default function InstallPrompt() {
 
   return (
     visible && (
-      <div className="fixed bottom-4 right-4 bg-background border border-gray-300 dark:border-gray-700 shadow-xl rounded-xl p-4 z-50 flex items-center gap-4 animate-slide-up">
-        <img
-          src={logo}
-          alt="App Icon"
-          className="w-10 h-10 rounded-lg"
-        />
-        <div className="flex-1">
-          <p className="font-semibold text-base">Install Admin App</p>
-          <p className="text-sm text-muted-foreground">For faster access and offline use</p>
-        </div>
-        <button
-          onClick={handleInstall}
-          className="bg-primary hover:bg-primary/90 text-white px-3 py-1 rounded-lg flex items-center gap-1"
-        >
-          <Download className="w-4 h-4" />
-          Install
-        </button>
+      <div className="fixed bottom-4 right-4 z-50 animate-slide-up">
+        <Card className="w-[350px] shadow-2xl border border-primary rounded-2xl">
+          <CardContent className="p-4 flex items-center gap-4">
+            <Avatar className="w-12 h-12 rounded-xl">
+              <AvatarImage src={logo} alt="App Logo" />
+              <AvatarFallback>AP</AvatarFallback>
+            </Avatar>
+            <div className="flex-1">
+              <p className="font-semibold text-base">Install Admin App</p>
+              <p className="text-sm text-muted-foreground">
+                Faster access & offline support
+              </p>
+            </div>
+            <Button onClick={handleInstall} className="gap-1">
+              <Download className="w-4 h-4" />
+              Install
+            </Button>
+          </CardContent>
+        </Card>
       </div>
     )
   );
